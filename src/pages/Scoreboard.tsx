@@ -196,7 +196,17 @@ const PALETTE: TeamColor[] = [
   },
 ];
 
+const getRandomColors = () => {
+  const idx1 = Math.floor(Math.random() * PALETTE.length);
+  let idx2 = Math.floor(Math.random() * PALETTE.length);
+  while (idx1 === idx2) {
+    idx2 = Math.floor(Math.random() * PALETTE.length);
+  }
+  return [idx1, idx2];
+};
+
 export default function Scoreboard() {
+  const [initialColors] = useState(getRandomColors);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const [explodeDialogOpen, setExplodeDialogOpen] = useState(false);
@@ -207,11 +217,11 @@ export default function Scoreboard() {
 
   const [team1ScoreIdx, setTeam1ScoreIdx] = useState(0);
   const [team1History, setTeam1History] = useState<number[]>([]);
-  const [team1ColorIdx, setTeam1ColorIdx] = useState(0);
+  const [team1ColorIdx, setTeam1ColorIdx] = useState(initialColors[0]);
 
   const [team2ScoreIdx, setTeam2ScoreIdx] = useState(0);
   const [team2History, setTeam2History] = useState<number[]>([]);
-  const [team2ColorIdx, setTeam2ColorIdx] = useState(1);
+  const [team2ColorIdx, setTeam2ColorIdx] = useState(initialColors[1]);
 
   const [leadingTeam, setLeadingTeam] = useState<1 | 2 | null>(null);
 
@@ -288,6 +298,9 @@ export default function Scoreboard() {
     setWinDialogOpen(false);
     setWinningTeam(null);
     setLeadingTeam(null);
+    const newColors = getRandomColors();
+    setTeam1ColorIdx(newColors[0]);
+    setTeam2ColorIdx(newColors[1]);
   };
 
   const resetFailedTeam = (keepLeader: boolean) => {
@@ -317,8 +330,7 @@ export default function Scoreboard() {
             </span>
           </div>
           <p className="text-indigo-700/80 text-[10px] sm:text-sm font-medium truncate mt-0.5 sm:mt-1">
-            记录每局的得分进阶。
-            <span className="sm:hidden ml-1 opacity-70">by David Jin</span>
+            <span className="sm:hidden opacity-70">by David Jin</span>
           </p>
         </div>
         <button

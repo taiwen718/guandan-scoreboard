@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# Guandan Scoreboard (掼蛋计分板)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, production-ready mobile-first scoreboard application designed for tracking points in the card game **Guandan** (掼蛋).
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It is deployed and accessible at: **[guandan.hogwash.ai](https://guandan.hogwash.ai)**
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dual-Team Tracking**: Easily track the score and history of two opposing teams.
+- **Custom Scoring Logic**: Accurately follows Guandan card rankings (2 through A3).
+- **Undo Functionality**: Made a mistake? Seamlessly revert back with history-based undo features.
+- **Game States**: Handles "Explode" (failure to pass A3) and "Victory" mechanics intuitively.
+- **Child-Friendly & Responsive UI**: Works elegantly across mobile, tablet, and desktop devices.
+- **Dynamic Color Themes**: Custom team color palettes for personalization.
+- **Mobile-First Orientation**: Adaptive layout switching for strict fullscreen fitting without scrolling.
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 18** & **TypeScript**
+- **Vite** & **Bun** (for fast local development and building)
+- **Tailwind CSS** & **shadcn/ui** (styling and accessible components)
+- **Lucide React** (icons)
+- **Cloudflare Pages** (deployment)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 💻 Local Development
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Install dependencies**:
+   ```bash
+   bun install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Run the development server**:
+   ```bash
+   bun run dev
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3. **Build for production**:
+   ```bash
+   bun run build
+   ```
